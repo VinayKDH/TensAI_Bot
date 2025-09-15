@@ -53,5 +53,14 @@ app.post('/api/messages', (req, res) => {
   });
 });
 
+// Lightweight health endpoints for deployment verification
+app.get('/', (req, res) => {
+  res.status(200).send('TensAI Bot is running');
+});
+
+app.get('/health', (req, res) => {
+  res.status(200).json({ status: 'ok', uptime: process.uptime() });
+});
+
 const port = process.env.PORT || 3978;
 app.listen(port, () => console.log(`Messaging endpoint listening on ${port}`));
